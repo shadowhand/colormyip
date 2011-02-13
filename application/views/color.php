@@ -2,9 +2,11 @@
 <head>
 	<title>Your ip address, in technicolor.</title>
 	<style>
-	html { font-size: 60%; font-family: sans-serif; background: #eee; }
+	html { font-size: 60%; font-family: sans-serif; background: #eee; color: #111; }
 	body { margin: 0; padding: 0; height: 100%; }
 	div { padding: 5%; }
+	a { color: #111; text-decoration: underline; }
+	a:hover { color: #444; }
 	table { width: 100%; height: 80%; border-collapse: collapse; border-spacing: 0; }
 	table th, table td { padding: 0.4em; text-align: left; font-weight: normal; }
 	table th.ip, table td.fork { text-align: right; }
