@@ -7,27 +7,42 @@ class Controller_Color extends Controller {
 	public function action_index()
 	{
 		$this->view = View::factory('color')
-			->bind('colors', $colors)
 			->bind('ip', $ip)
+			->bind('canonical', $canonical)
+			->bind('colors', $colors)
 			;
 
-		// IP address specified?
-		$ip = Arr::get($_GET, 'ip');
+		$ip = $this->request->param('ip', FALSE);
 
-		if ( ! Valid::ip($ip))
+		if ( ! $ip)
 		{
-			// Use the client IP address
-			$ip = Request::$client_ip;
+			// IP address specified?
+			$ip = Arr::get($_GET, 'ip');
+
+			if ( ! Valid::ip($ip))
+			{
+				// Use the client IP address
+				$ip = Request::$client_ip;
+			}
 		}
 
-		if (strpos($ip, ':') !== FALSE)
+		// Normalized IP address
+		$normal = $ip;
+
+		if (strpos($normal, ':') !== FALSE)
 		{
 			// Normalize IPv6 addresses
-			$ip = $this->normalize_ipv6($ip);
+			$normal = $this->normalize_ipv6($normal);
+		}
+
+		if ($ip !== $this->request->param('ip'))
+		{
+			// Incorrect URL reference, specify the corrected URL
+			$canonical = $this->request->url(array('ip' => $normal));
 		}
 
 		// Hash the ip address
-		$hash = hash('sha512', $ip);
+		$hash = hash('sha512', $normal);
 
 		if ($tail = (strlen($hash) % 6))
 		{
