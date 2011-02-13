@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Your ip address, in technicolor.</title>
+	<title>your colorful ip address</title>
 	<style>
 	html { font-size: 60%; font-family: sans-serif; background: #eee; color: #111; }
 	body { margin: 0; padding: 0; height: 100%; }
