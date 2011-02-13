@@ -7,6 +7,7 @@ class Controller_Color extends Controller {
 		$view = View::factory('color')
 			->bind('colors', $colors)
 			->bind('ip', $ip)
+			->bind('size', $size)
 			;
 
 		// IP address specified?
@@ -29,6 +30,9 @@ class Controller_Color extends Controller {
 
 		// Split the hash into 6-character groups
 		$colors = str_split($hash, 6);
+
+		// Column size
+		$size = round(100 / count($colors), 3);
 
 		$this->response->body($view);
 	}

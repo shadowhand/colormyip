@@ -8,9 +8,10 @@
 	a { color: #111; text-decoration: underline; }
 	a:hover { color: #444; }
 	table { width: 100%; height: 80%; border-collapse: collapse; border-spacing: 0; }
-	table th, table td { padding: 0.4em; text-align: left; font-weight: normal; }
+	table th, table td { padding: 0; text-align: left; font-weight: normal; }
 	table th.ip, table td.fork { text-align: right; }
-	table tr.colors td { height: 100%; }
+	table tr.colors td { height: 100%; width: <?php echo $size ?>%; }
+	table tr.colors td:first-child { width: auto; }
 	table tr.head,
 	table tr.copyright { height: 10%; }
 	table tr.copyright { font-size: 0.8em; }
