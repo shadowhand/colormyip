@@ -22,7 +22,7 @@
 		<table>
 			<thead>
 				<tr class="head">
-					<th colspan="<?php echo floor(count($colors) / 2) ?>"><?php echo $ip ?></th>
+					<th colspan="<?php echo floor(count($colors) / 2) ?>"><?php echo HTML::chars($ip) ?></th>
 					<th colspan="<?php echo ceil(count($colors) / 2) ?>" class="right">colormyip.com</th>
 				</tr>
 			</thead>
