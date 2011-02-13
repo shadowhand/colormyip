@@ -9,8 +9,14 @@ class Controller_Color extends Controller {
 			->bind('ip', $ip)
 			;
 
-		// Get the client ip address
-		$ip = Request::$client_ip;
+		// IP address specified?
+		$ip = Arr::get($_GET, 'ip');
+
+		if ( ! Valid::ip($ip))
+		{
+			// Use the client IP address
+			$ip = Request::$client_ip;
+		}
 
 		// Hash the ip address
 		$hash = hash('sha512', $ip);
