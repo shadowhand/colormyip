@@ -21,8 +21,14 @@ class Controller_Color extends Controller {
 
 			if ( ! Valid::ip($ip))
 			{
-				// Use the client IP address
-				$ip = Request::$client_ip;
+				// CloudFlare proxy support
+				$ip = Arr::get($_SERVER, 'HTTP_CF_CONNECTING_IP');
+
+				if ( ! $ip)
+				{
+					// Use the client IP address
+					$ip = Request::$client_ip;
+				}
 			}
 		}
 
